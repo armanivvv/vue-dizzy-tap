@@ -17,7 +17,7 @@ app.get('/status', (req, res) => {
 
 app.post('/register', (req, res) => {
   res.send({
-    message: `User ${req.body.email}! was registered!! Enjoy.`,
+    message: `User ${req.body.email}, with ${req.body.password} was registered! Enjoy!`,
   });
 });
 
