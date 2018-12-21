@@ -12,4 +12,7 @@ module.exports = {
       storage: path.resolve(__dirname, '../../dizzytaps.sqlite'),
     },
   },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret',
+  },
 };
