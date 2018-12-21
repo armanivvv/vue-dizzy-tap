@@ -16,6 +16,7 @@
             v-model="password"
             box
           ></v-text-field>
+          <div class="danger-alert" v-html="error" />
           <v-btn dark class="cyan" @click="login">Login</v-btn>
         </div>
       </div>

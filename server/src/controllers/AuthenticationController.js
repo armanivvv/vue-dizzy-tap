@@ -8,7 +8,7 @@ module.exports = {
       res.send({
         user: userJson,
       });
-    } catch (err) {
+    } catch (error) {
       res.status(400).send({
         error: 'This email is already in use.',
       });
@@ -36,11 +36,11 @@ module.exports = {
       }
 
       const userJson = user.toJSON();
-      res.send({
+      return res.send({
         user: userJson,
       });
     } catch (err) {
-      res.status(500).send({
+      return res.status(500).send({
         error: 'An error has occured.',
       });
     }
