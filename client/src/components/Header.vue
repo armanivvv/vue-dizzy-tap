@@ -4,12 +4,13 @@
       <router-link :to="{ name: 'root' }">Dizzy Tab Lounge</router-link>
     </v-toolbar-title>
 
-    <!-- TODO implement -->
-    <!-- <v-toolbar-items>
-      <v-btn flat dark>
+    <v-toolbar-items>
+      <v-btn flat dark
+      @click="navigateTo({ name: 'cocktails' })">
+        <!-- <router-link :to="{ name: 'cocktails' }">Login</router-link> -->
         Browse
       </v-btn>
-    </v-toolbar-items> -->
+    </v-toolbar-items>
 
     <v-spacer></v-spacer>
 
