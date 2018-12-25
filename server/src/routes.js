@@ -13,6 +13,9 @@ module.exports = (app) => {
   app.get('/cocktails',
     CocktailsController.index);
 
+  app.get('/cocktails/:cocktailId',
+    CocktailsController.show);
+
   app.post('/cocktails',
     CocktailsController.create);
 };

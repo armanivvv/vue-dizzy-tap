@@ -3,44 +3,38 @@
     <v-flex xs6>
       <panel title="Cocktail Metadata">
         <v-text-field
-          label="Name"
-          required
+          label="Name*"
           :rules="[required]"
           v-model="cocktail.name"
         ></v-text-field>
 
         <v-text-field
-          label="Description"
+          label="Description*"
           v-model="cocktail.desctiption"
-          required
           :rules="[required]"
         ></v-text-field>
 
         <v-text-field
-          label="Ingredient"
+          label="Ingredient*"
           v-model="cocktail.ingredient"
-          required
           :rules="[required]"
         ></v-text-field>
 
         <v-text-field
-          label="Alcoholic"
+          label="Alcoholic*"
           v-model="cocktail.alcoholic"
-          required
           :rules="[required]"
         ></v-text-field>
 
         <v-text-field
-          label="Category"
+          label="Category*"
           v-model="cocktail.category"
-          required
           :rules="[required]"
         ></v-text-field>
 
         <v-text-field
-          label="Glass"
+          label="Glass*"
           v-model="cocktail.glass"
-          required
           :rules="[required]"
         ></v-text-field>
       </panel>
