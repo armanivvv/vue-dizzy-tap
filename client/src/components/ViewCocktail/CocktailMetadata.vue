@@ -12,6 +12,16 @@
         {{ cocktail.category }}
         </div>
 
+        <v-btn dark class="cyan"
+          @click="navigateTo({
+            name: 'cocktail-edit',
+            params: {
+              cocktailId: cocktail.id
+              }
+            })">
+            Edit
+          </v-btn>
+
       </v-flex>
       <v-flex xs6>
         <img class="cocktail-image"  :src="cocktail.imageUrl"/>
@@ -29,6 +39,12 @@ export default {
   props: [
     'cocktail',
   ],
+
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
+  },
 
   components: {
     Panel,

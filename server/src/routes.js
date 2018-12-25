@@ -16,6 +16,9 @@ module.exports = (app) => {
   app.get('/cocktails/:cocktailId',
     CocktailsController.show);
 
+  app.put('/cocktails/:cocktailId',
+    CocktailsController.put);
+
   app.post('/cocktails',
     CocktailsController.create);
 };

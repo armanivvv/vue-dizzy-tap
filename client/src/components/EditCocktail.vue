@@ -45,13 +45,12 @@
         <v-text-field
           label="Image URL"
           v-model="cocktail.imageUrl"
-          :rules="[required]"
         ></v-text-field>
       </panel>
 
       <div class="danger-alert" v-if="error">{{ error }}</div>
 
-      <v-btn dark class="cyan" @click="create">Create Cocktail</v-btn>
+      <v-btn dark class="cyan" @click="save">Save Cocktail</v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -73,29 +72,44 @@ export default {
         imageUrl: null,
       },
       error: null,
-      required: value => !!value || 'Required',
+      required: value => !!value || 'Required.',
     };
   },
+
   methods: {
-    async create() {
+    async save() {
       this.error = null;
       const areAllFieldsFilledIn = Object
         .keys(this.cocktail)
         .every(key => !!this.cocktail[key]);
       if (!areAllFieldsFilledIn) {
         this.error = 'Please fill in all the required fields.';
-        return;
       }
+
+      const cocktailId = this.$store.state.route.params.cocktailId;
       try {
-        await CocktailsService.post(this.cocktail);
+        await CocktailsService.put(this.cocktailId);
         this.$router.push({
-          name: 'cocktails',
+          name: 'cocktail',
+          params: {
+            cocktailId,
+          },
         });
-      } catch (_) {
-        // to add
+      } catch (error) {
+        this.error = error.response.data.error;
       }
     },
   },
+
+  async mounted() {
+    try {
+      const cocktailId = this.$store.state.route.params.cocktailId;
+      this.cocktail = (await CocktailsService.show(cocktailId)).data;
+    } catch (error) {
+      this.error = error.response.data.error;
+    }
+  },
+
   components: {
     Panel,
   },

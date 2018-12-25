@@ -6,6 +6,7 @@ import Login from '@/components/Login';
 import Cocktails from '@/components/Cocktails';
 import CreateCocktail from '@/components/CreateCocktail';
 import ViewCocktail from '@/components/ViewCocktail/Index';
+import EditCocktail from '@/components/EditCocktail';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/cocktails/:cocktailId',
       name: 'cocktail',
       component: ViewCocktail,
+    },
+    {
+      path: '/cocktails/:cocktailId/edit',
+      name: 'cocktail-edit',
+      component: EditCocktail,
     },
   ],
 });
