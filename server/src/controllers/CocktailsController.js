@@ -4,7 +4,7 @@ module.exports = {
   async index(req, res) {
     try {
       const cocktail = await Cocktail.findAll({
-        limit: 10,
+        limit: 20,
       });
       return res.send(cocktail);
     } catch (error) {
