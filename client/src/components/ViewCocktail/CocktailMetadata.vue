@@ -25,15 +25,15 @@
         </v-btn>
 
         <v-btn dark class="cyan"
-          @click="bookmark"
-          v-if="isUserLoggedIn && isBookmarked">
-          Bookmark
+          @click="setAsBookmark"
+          v-if="isUserLoggedIn && bookmark">
+          Set Bookmark
         </v-btn>
 
         <v-btn dark class="cyan"
-          @click="unbookmark"
-          v-if="isUserLoggedIn && !isBookmarked">
-          Unbookmark
+          @click="unsetAsBookmark"
+          v-if="isUserLoggedIn && !bookmark">
+          Remove Bookmark
         </v-btn>
 
       </v-flex>
@@ -57,7 +57,7 @@ export default {
 
   data() {
     return {
-      isBookmarked: false,
+      bookmark: null,
     };
   },
   computed: {
@@ -66,33 +66,34 @@ export default {
     ]),
   },
 
-  async mounted() {
-    if (this.isUserLoggedIn) {
-      return;
-    }
-    try {
-      const bookmark = (await BookmarksService.index({
-        cocktailId: this.cocktail.id,
-        userId: this.$store.state.user.id,
-      })).data;
-      this.isBookmarked = !!bookmark;
-    } catch (error) {
-      this.error = error.response.data.error;
-    }
-  },
-
-  methods: {
-    async bookmark() {
+  watch: {
+    async cocktail() {
+      if (this.isUserLoggedIn) {
+        return;
+      }
       try {
-        await BookmarksService.post({
+        this.bookmark = (await BookmarksService.index({
           cocktailId: this.cocktail.id,
           userId: this.$store.state.user.id,
-        });
+        })).data;
       } catch (error) {
         this.error = error.response.data.error;
       }
     },
-    async unbookmark() {
+  },
+
+  methods: {
+    async setAsBookmark() {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        })).data;
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+    async unsetAsBookmark() {
       try {
         await BookmarksService.delete({
           cocktailId: this.cocktail.id,
