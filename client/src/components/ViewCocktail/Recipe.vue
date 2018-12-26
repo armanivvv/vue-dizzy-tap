@@ -7,16 +7,11 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel';
 
 export default {
   props: [
     'cocktail',
   ],
-
-  components: {
-    Panel,
-  },
 };
 
 </script>

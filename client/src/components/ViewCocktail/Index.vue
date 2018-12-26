@@ -12,7 +12,6 @@
 
 <script>
 import CocktailsService from '@/services/CocktailsService';
-import Panel from '@/components/Panel';
 import CocktailMetadata from './CocktailMetadata';
 import Recipe from './Recipe';
 
@@ -29,7 +28,6 @@ export default {
   },
 
   components: {
-    Panel,
     CocktailMetadata,
     Recipe,
   },

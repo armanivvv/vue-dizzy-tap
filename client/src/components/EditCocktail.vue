@@ -56,7 +56,6 @@
 </template>
 
 <script>
-// import Panel from '@/components/Panel';
 import CocktailsService from '@/services/CocktailsService';
 
 export default {
@@ -110,10 +109,6 @@ export default {
       this.error = error.response.data.error;
     }
   },
-
-  // components: {
-  //   Panel,
-  // },
 };
 
 </script>

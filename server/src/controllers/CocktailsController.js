@@ -3,9 +3,26 @@ const { Cocktail } = require('../models');
 module.exports = {
   async index(req, res) {
     try {
-      const cocktails = await Cocktail.findAll({
-        limit: 10,
-      });
+      let cocktails = null;
+      // eslint-disable-next-line prefer-destructuring
+      const search = req.query.search;
+      if (req.query.search) {
+        cocktails = await Cocktail.findAll({
+          where: {
+            $or: [
+              'name', 'description', 'ingredient',
+            ].map(key => ({
+              [key]: {
+                $like: `%${search}%`,
+              },
+            })),
+          },
+        });
+      } else {
+        cocktails = await Cocktail.findAll({
+          limit: 10,
+        });
+      }
       return res.send(cocktails);
     } catch (error) {
       return res.status(500).send({

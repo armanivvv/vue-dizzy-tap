@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Spritz",
+    "description": "Italian wine-based cocktail, commonly served as an aperitif in Northeast Italy.",
+    "ingredient": "Campari",
+    "alcoholic": "Yes",
+    "category": "Cocktail",
+    "glass": "Old Fashioned glass", 
+    "imageUrl": "https://celebratingsweets.com/wp-content/uploads/2018/08/Aperol-Spritz-3.jpg"
+  },
+  {
+    "name": "Espresso Martini",
+    "description": "Cold, coffee-flavored cocktail made with vodka, espresso coffee, coffee liqueur, and sugar syrup.",
+    "ingredient": "Vodka",
+    "alcoholic": "Yes",
+    "category": "Cocktail",
+    "glass": "Cocktail glass",
+    "imageUrl": "https://cdn.liquor.com/wp-content/uploads/2017/08/24101225/espresso-martini-720x720-recipe1.jpg"
+  },
+  {
+    "name": "Margarita",
+    "description": "Tequila, orange liqueur, and lime juice often served with salt on the rim of the glass.",
+    "ingredient": "Tequila",
+    "alcoholic": "Yes",
+    "category": "Cocktail",
+    "glass": "Margarita glass",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/MargaritaReal.jpg/1022px-MargaritaReal.jpg"
+  },
+  {
+    "name": "Moscow Mule",
+    "description": "Made with vodka, spicy ginger beer, and lime juice, garnished with a slice or wedge of lime and mint leaves.",
+    "ingredient": "Vodka",
+    "alcoholic": "Yes",
+    "category": "Cocktail",
+    "glass": "Copper mug",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Moscow_Mule_at_Rye%2C_San_Francisco.jpg/440px-Moscow_Mule_at_Rye%2C_San_Francisco.jpg"
+  },
+  {
+    "name": "Mojito",
+    "description": "Its combination of sweetness, citrus, and mint flavors is intended to complement the rum, and has made the mojito a popular summer drink.",
+    "ingredient": "White Rum",
+    "alcoholic": "Yes",
+    "category": "Cocktail",
+    "glass": "Collins glass",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Mojito98775.jpeg/440px-Mojito98775.jpeg"
+  }
+]

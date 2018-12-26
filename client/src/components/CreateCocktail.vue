@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel';
 import CocktailsService from '@/services/CocktailsService';
 
 export default {
@@ -87,17 +86,20 @@ export default {
         return;
       }
       try {
+        // Redirect to just created cocktail
+        // const returnedCocktail = await CocktailsService.post(this.cocktail);
+        // this.$router.push({
+        //   name: 'cocktail',
+        //   params: { cocktailId: returnedCocktail.id },
+        // });
         await CocktailsService.post(this.cocktail);
         this.$router.push({
-          name: 'cocktail',
+          name: 'cocktails',
         });
       } catch (error) {
         this.error = error.response.data.error;
       }
     },
-  },
-  components: {
-    Panel,
   },
 };
 

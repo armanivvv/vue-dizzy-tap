@@ -13,14 +13,28 @@
         </div>
 
         <v-btn dark class="cyan"
-          @click="navigateTo({
+          :to="{
             name: 'cocktail-edit',
-            params: {
-              cocktailId: cocktail.id
+            params () {
+              return{
+                cocktailId: cocktail.id
               }
-            })">
-            Edit
-          </v-btn>
+            }
+          }">
+        Edit
+        </v-btn>
+
+        <v-btn dark class="cyan"
+          @click="setAsBookmark"
+          v-if="isUserLoggedIn && bookmark">
+          Set Bookmark
+        </v-btn>
+
+        <v-btn dark class="cyan"
+          @click="unsetAsBookmark"
+          v-if="isUserLoggedIn && !bookmark">
+          Remove Bookmark
+        </v-btn>
 
       </v-flex>
       <v-flex xs6>
@@ -33,21 +47,62 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel';
+import { mapState } from 'vuex';
+import BookmarksService from '@/services/BookmarksService';
 
 export default {
   props: [
     'cocktail',
   ],
 
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route);
+  data() {
+    return {
+      bookmark: null,
+    };
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+    ]),
+  },
+
+  watch: {
+    async cocktail() {
+      if (this.isUserLoggedIn) {
+        return;
+      }
+      try {
+        this.bookmark = (await BookmarksService.index({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        })).data;
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     },
   },
 
-  components: {
-    Panel,
+  methods: {
+    async setAsBookmark() {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        })).data;
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+    async unsetAsBookmark() {
+      try {
+        await BookmarksService.delete({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
   },
 };
 
