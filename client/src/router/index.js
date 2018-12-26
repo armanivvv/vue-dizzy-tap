@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import Register from '@/components/Register';
 import Login from '@/components/Login';
-import Cocktails from '@/components/Cocktails';
+import Cocktails from '@/components/Cocktails/Index';
 import CreateCocktail from '@/components/CreateCocktail';
 import ViewCocktail from '@/components/ViewCocktail/Index';
 import EditCocktail from '@/components/EditCocktail';
