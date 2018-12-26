@@ -3,9 +3,19 @@ const { Cocktail } = require('../models');
 module.exports = {
   async index(req, res) {
     try {
-      const cocktail = await Cocktail.findAll({
-        limit: 20,
+      const cocktails = await Cocktail.findAll({
+        limit: 10,
       });
+      return res.send(cocktails);
+    } catch (error) {
+      return res.status(500).send({
+        error: 'An error has occured, trying to display cocktails',
+      });
+    }
+  },
+  async show(req, res) {
+    try {
+      const cocktail = await Cocktail.findById(req.params.cocktailId);
       return res.send(cocktail);
     } catch (error) {
       return res.status(500).send({
@@ -19,7 +29,21 @@ module.exports = {
       return res.send(cocktail);
     } catch (error) {
       return res.status(500).send({
-        error: 'An error has occured. trying to create a cocktail',
+        error: 'An error has occured trying to create a cocktail',
+      });
+    }
+  },
+  async put(req, res) {
+    try {
+      await Cocktail.update(req.body, {
+        where: {
+          id: req.params.cocktailId,
+        },
+      });
+      return res.send(req.body);
+    } catch (error) {
+      return res.status(500).send({
+        error: 'An error has occured trying to update a cocktail',
       });
     }
   },

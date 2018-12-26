@@ -8,5 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     glass: DataTypes.STRING,
     imageUrl: DataTypes.STRING,
   });
+
   return Cocktail;
 };

@@ -15,5 +15,6 @@ require('./routes')(app);
 sequelize.sync({ force: false })
   .then(() => {
     app.listen(config.port);
+    // eslint-disable-next-line no-console
     console.log(`Server started on port ${config.port}`);
   });
