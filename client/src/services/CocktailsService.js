@@ -11,6 +11,6 @@ export default {
     return Api().post('cocktails', cocktail);
   },
   put(cocktail) {
-    return Api().put(`cocktails/${cocktail.Id}`, cocktail);
+    return Api().put(`cocktails/${cocktail.id}`, cocktail);
   },
 };

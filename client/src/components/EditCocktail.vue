@@ -10,7 +10,7 @@
 
         <v-text-field
           label="Description*"
-          v-model="cocktail.desctiption"
+          v-model="cocktail.description"
           :rules="[required]"
         ></v-text-field>
 
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel';
+// import Panel from '@/components/Panel';
 import CocktailsService from '@/services/CocktailsService';
 
 export default {
@@ -84,15 +84,16 @@ export default {
         .every(key => !!this.cocktail[key]);
       if (!areAllFieldsFilledIn) {
         this.error = 'Please fill in all the required fields.';
+        return;
       }
 
-      const cocktailId = this.$store.state.route.params.cocktailId;
+      // const cocktailId = this.$store.state.route.params.cocktailId;
       try {
-        await CocktailsService.put(this.cocktailId);
+        await CocktailsService.put(this.cocktail);
         this.$router.push({
           name: 'cocktail',
           params: {
-            cocktailId,
+            cocktailId: this.cocktail.id,
           },
         });
       } catch (error) {
@@ -110,9 +111,9 @@ export default {
     }
   },
 
-  components: {
-    Panel,
-  },
+  // components: {
+  //   Panel,
+  // },
 };
 
 </script>

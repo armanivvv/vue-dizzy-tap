@@ -10,7 +10,7 @@
 
         <v-text-field
           label="Description*"
-          v-model="cocktail.desctiption"
+          v-model="cocktail.description"
           :rules="[required]"
         ></v-text-field>
 
@@ -89,10 +89,10 @@ export default {
       try {
         await CocktailsService.post(this.cocktail);
         this.$router.push({
-          name: 'cocktails',
+          name: 'cocktail',
         });
-      } catch (_) {
-        // to add
+      } catch (error) {
+        this.error = error.response.data.error;
       }
     },
   },
