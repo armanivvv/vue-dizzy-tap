@@ -21,8 +21,20 @@
               }
             }
           }">
-          Edit
-          </v-btn>
+        Edit
+        </v-btn>
+
+        <v-btn dark class="cyan"
+          @click="bookmark"
+          v-if="isUserLoggedIn && isBookmarked">
+          Bookmark
+        </v-btn>
+
+        <v-btn dark class="cyan"
+          @click="unbookmark"
+          v-if="isUserLoggedIn && !isBookmarked">
+          Unbookmark
+        </v-btn>
 
       </v-flex>
       <v-flex xs6>
@@ -35,11 +47,62 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import BookmarksService from '@/services/BookmarksService';
 
 export default {
   props: [
     'cocktail',
   ],
+
+  data() {
+    return {
+      isBookmarked: false,
+    };
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+    ]),
+  },
+
+  async mounted() {
+    if (this.isUserLoggedIn) {
+      return;
+    }
+    try {
+      const bookmark = (await BookmarksService.index({
+        cocktailId: this.cocktail.id,
+        userId: this.$store.state.user.id,
+      })).data;
+      this.isBookmarked = !!bookmark;
+    } catch (error) {
+      this.error = error.response.data.error;
+    }
+  },
+
+  methods: {
+    async bookmark() {
+      try {
+        await BookmarksService.post({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+    async unbookmark() {
+      try {
+        await BookmarksService.delete({
+          cocktailId: this.cocktail.id,
+          userId: this.$store.state.user.id,
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+  },
 };
 
 </script>
