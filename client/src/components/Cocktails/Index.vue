@@ -19,12 +19,6 @@ export default {
     };
   },
 
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route);
-    },
-  },
-
   async mounted() {
     // request backend songs
     this.cocktails = (await CocktailsService.index()).data;

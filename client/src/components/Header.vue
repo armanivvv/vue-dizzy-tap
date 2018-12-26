@@ -1,13 +1,14 @@
 <template>
   <v-toolbar dark fixed class="cyan">
     <v-toolbar-title class="mr-4">
-      <router-link :to="{ name: 'root' }">Dizzy Tab Lounge</router-link>
+      <router-link class="home" :to="{ name: 'root' }" tag="span">Dizzy Tab Lounge</router-link>
     </v-toolbar-title>
 
     <v-toolbar-items>
       <v-btn flat dark
-      @click="navigateTo({ name: 'cocktails' })">
-        <!-- <router-link :to="{ name: 'cocktails' }">Login</router-link> -->
+        :to="{
+          name: 'cocktails'
+        }">
         Browse
       </v-btn>
     </v-toolbar-items>
@@ -16,18 +17,19 @@
 
     <v-toolbar-items>
       <v-btn flat dark v-if="!$store.state.isUserLoggedIn"
-      @click="navigateTo({ name: 'login' })">
-        <!-- <router-link :to="{ name: 'login' }">Login</router-link> -->
+        :to="{
+          name: 'login'
+        }">
         Login
       </v-btn>
       <v-btn flat dark v-if="!$store.state.isUserLoggedIn"
-      @click="navigateTo({ name: 'register' })">
-        <!-- <router-link :to="{ name: 'register' }">Sign Up</router-link> -->
+        :to="{
+          name: 'register'
+        }">
         Signup
       </v-btn>
       <v-btn flat dark v-if="$store.state.isUserLoggedIn"
-      @click="logout">
-        <!-- <router-link :to="{ name: 'logout' }">Logout</router-link> -->
+        @click="logout">
         Logout
       </v-btn>
     </v-toolbar-items>
@@ -37,9 +39,6 @@
 <script>
 export default {
   methods: {
-    navigateTo(route) {
-      this.$router.push(route);
-    },
     logout() {
       this.$store.dispatch('setToken', null);
       this.$store.dispatch('setUser', null);
@@ -54,5 +53,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.home {
+  cursor: pointer;
+}
+
+.home:hover {
+  color: #E9E;
+}
 
 </style>

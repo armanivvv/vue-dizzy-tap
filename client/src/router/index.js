@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+// import HelloWorld from '@/components/HelloWorld';
 import Register from '@/components/Register';
 import Login from '@/components/Login';
 import Cocktails from '@/components/Cocktails/Index';
@@ -12,10 +12,16 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    // homepage redirects - TODO consider adding back component
     {
       path: '/',
       name: 'root',
-      component: HelloWorld,
+      redirect: 'cocktails',
+      // component: HelloWorld,
+    },
+    {
+      path: '*',
+      redirect: 'cocktails',
     },
     {
       path: '/register',

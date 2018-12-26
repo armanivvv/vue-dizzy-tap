@@ -13,13 +13,15 @@
         </div>
 
         <v-btn dark class="cyan"
-          @click="navigateTo({
+          :to="{
             name: 'cocktail-edit',
-            params: {
-              cocktailId: cocktail.id
+            params () {
+              return{
+                cocktailId: cocktail.id
               }
-            })">
-            Edit
+            }
+          }">
+          Edit
           </v-btn>
 
       </v-flex>
@@ -38,12 +40,6 @@ export default {
   props: [
     'cocktail',
   ],
-
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route);
-    },
-  },
 };
 
 </script>

@@ -1,9 +1,11 @@
 <template>
   <panel title="Cocktails">
     <v-btn slot="action"
-    class="cyan accent-1"
-    small absolute light right middle fab
-    @click="navigateTo({ name: 'cocktails-create' })">
+      class="cyan accent-1"
+      small absolute light right middle fab
+      :to="{
+          name: 'cocktails-create'
+        }">
       <v-icon>add</v-icon>
     </v-btn>
     <div v-for="cocktail in cocktails" :key="cocktail.id" class="cocktail">
@@ -20,12 +22,12 @@
           {{ cocktail.category }}
           </div>
           <v-btn dark class="cyan"
-          @click="navigateTo({
-            name: 'cocktail',
-            params: {
-              cocktailId: cocktail.id
+            :to="{
+              name: 'cocktail',
+              params: {
+                cocktailId: cocktail.id
               }
-            })">
+            }">
             View
             </v-btn>
 
@@ -46,12 +48,6 @@ export default {
     return {
       cocktails: null,
     };
-  },
-
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route);
-    },
   },
 
   watch: {
