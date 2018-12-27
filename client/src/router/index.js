@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import HelloWorld from '@/components/HelloWorld';
 import Register from '@/components/Register';
 import Login from '@/components/Login';
 import Cocktails from '@/components/Cocktails/Index';
 import CreateCocktail from '@/components/CreateCocktail';
 import ViewCocktail from '@/components/ViewCocktail/Index';
 import EditCocktail from '@/components/EditCocktail';
+// import HelloWorld from '@/components/HelloWorld';
 
 Vue.use(Router);
 

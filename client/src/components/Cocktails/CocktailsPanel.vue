@@ -15,9 +15,9 @@
           <div class="cocktail-name">
           {{ cocktail.name }}
           </div>
-          <div class="cocktail-description">
+          <!-- <div class="cocktail-description">
           {{ cocktail.description }}
-          </div>
+          </div> -->
           <div class="cocktail-category">
           {{ cocktail.category }}
           </div>

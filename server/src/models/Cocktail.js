@@ -9,5 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: DataTypes.STRING,
   });
 
+  Cocktail.associate = (models) => {
+  };
+
   return Cocktail;
 };

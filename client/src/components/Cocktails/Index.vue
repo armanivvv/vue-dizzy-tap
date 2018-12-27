@@ -1,16 +1,32 @@
 <template>
   <v-layout>
-    <v-flex xs6 offset-xs3>
+    <v-flex xs6 v-if="isUserLoggedIn">
+      <cocktails-bookmarks />
+      <recently-viewed-cocktails class="mt-2" />
+    </v-flex>
+
+    <v-flex :class="{
+        xs12: !isUserLoggedIn,
+        xs6: isUserLoggedIn
+      }" class="ml-2">
+      <cocktails-search-panel />
+      <cocktails-panel class="mt-2"/>
+    </v-flex>
+    <!-- <v-flex xs6 offset-xs3>
       <cocktails-search-panel class="mb-4"/>
       <cocktails-panel class="mt-4"/>
-    </v-flex>
+    </v-flex> -->
   </v-layout>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import CocktailsService from '@/services/CocktailsService';
 import CocktailsPanel from './CocktailsPanel';
 import CocktailsSearchPanel from './CocktailsSearchPanel';
+import CocktailsBookmarks from './CocktailsBookmarks';
+import RecentlyViewedCocktails from './RecentlyViewedCocktails';
+
 
 export default {
   data() {
@@ -19,14 +35,30 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+    ]),
+  },
+
   async mounted() {
-    // request backend songs
     this.cocktails = (await CocktailsService.index()).data;
   },
+
+  // watch: {
+  //   '$route.query.search': {
+  //     immediate: true,
+  //     async handler(value) {
+  //       this.cocktails = (await CocktailsService.index(value)).data;
+  //     },
+  //   },
+  // },
 
   components: {
     CocktailsPanel,
     CocktailsSearchPanel,
+    CocktailsBookmarks,
+    RecentlyViewedCocktails,
   },
 };
 

@@ -2,6 +2,9 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy');
 const CocktailsController = require('./controllers/CocktailsController');
 const BookmarksController = require('./controllers/BookmarksController');
+const HistoriesController = require('./controllers/HistoriesController');
+
+const isAuthenticated = require('./policies/isAuthenticated');
 
 module.exports = (app) => {
   // User Credentials and Functions
@@ -23,9 +26,20 @@ module.exports = (app) => {
 
   // Bookmark CRUD and Functions
   app.get('/bookmarks',
+    isAuthenticated,
     BookmarksController.index);
   app.post('/bookmarks',
+    isAuthenticated,
     BookmarksController.post);
   app.delete('/bookmarks/:bookmarkId',
-    BookmarksController.delete);
+    isAuthenticated,
+    BookmarksController.remove);
+
+  // Recent History Function
+  app.get('/histories',
+    isAuthenticated,
+    HistoriesController.index);
+  app.post('/histories',
+    isAuthenticated,
+    HistoriesController.post);
 };

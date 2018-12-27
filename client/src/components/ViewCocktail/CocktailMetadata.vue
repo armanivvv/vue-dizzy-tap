@@ -5,9 +5,9 @@
         <div class="cocktail-name">
         {{ cocktail.name }}
         </div>
-        <div class="cocktail-description">
+        <!-- <div class="cocktail-description">
         {{ cocktail.description }}
-        </div>
+        </div> -->
         <div class="cocktail-category">
         {{ cocktail.category }}
         </div>
@@ -24,15 +24,17 @@
         Edit
         </v-btn>
 
-        <v-btn dark class="cyan"
-          @click="setAsBookmark"
-          v-if="isUserLoggedIn && bookmark">
+        <v-btn v-if="isUserLoggedIn && !bookmark"
+          dark
+          class="cyan"
+          @click="setAsBookmark">
           Set Bookmark
         </v-btn>
 
-        <v-btn dark class="cyan"
-          @click="unsetAsBookmark"
-          v-if="isUserLoggedIn && !bookmark">
+        <v-btn v-if="isUserLoggedIn && bookmark"
+          dark
+          class="cyan"
+          @click="unsetAsBookmark">
           Remove Bookmark
         </v-btn>
 
@@ -63,21 +65,25 @@ export default {
   computed: {
     ...mapState([
       'isUserLoggedIn',
+      'user',
     ]),
   },
 
   watch: {
     async cocktail() {
-      if (this.isUserLoggedIn) {
+      if (!this.isUserLoggedIn) {
         return;
       }
       try {
-        this.bookmark = (await BookmarksService.index({
+        const bookmarks = (await BookmarksService.index({
           cocktailId: this.cocktail.id,
-          userId: this.$store.state.user.id,
         })).data;
-      } catch (error) {
-        this.error = error.response.data.error;
+        if (bookmarks.length) {
+          this.bookmark = bookmarks[0];
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   },
@@ -87,20 +93,19 @@ export default {
       try {
         this.bookmark = (await BookmarksService.post({
           cocktailId: this.cocktail.id,
-          userId: this.$store.state.user.id,
         })).data;
-      } catch (error) {
-        this.error = error.response.data.error;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
     async unsetAsBookmark() {
       try {
-        await BookmarksService.delete({
-          cocktailId: this.cocktail.id,
-          userId: this.$store.state.user.id,
-        });
-      } catch (error) {
-        this.error = error.response.data.error;
+        await BookmarksService.delete(this.bookmark.id);
+        this.bookmark = null;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   },

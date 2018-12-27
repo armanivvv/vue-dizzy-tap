@@ -6,7 +6,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   strict: true,
-  plugins: [createPersistedState()],
+  plugins: [
+    createPersistedState(),
+  ],
   state: {
     token: null,
     user: null,
@@ -15,16 +17,25 @@ export default new Vuex.Store({
   mutations: {
     setToken(state, token) {
       state.token = token;
-      if (token) {
-        state.isUserLoggedIn = true;
-      } else {
-        state.isUserLoggedIn = false;
-      }
+      state.isUserLoggedIn = !!(token);
     },
     setUser(state, user) {
       state.user = user;
     },
   },
+  // mutations: {
+  //   setToken(state, token) {
+  //     state.token = token;
+  //     if (token) {
+  //       state.isUserLoggedIn = true;
+  //     } else {
+  //       state.isUserLoggedIn = false;
+  //     }
+  //   },
+  //   setUser(state, user) {
+  //     state.user = user;
+  //   },
+  // },
   actions: {
     setToken({ commit }, token) {
       commit('setToken', token);

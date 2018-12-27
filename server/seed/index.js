@@ -6,13 +6,13 @@ const {
   Cocktail,
   User,
   Bookmark,
-  // History,
+  History,
 } = require('../src/models');
 
 const cocktails = require('./cocktails.json');
 const users = require('./users.json');
 const bookmarks = require('./bookmarks.json');
-// const histories = require('./history.json');
+const histories = require('./histories.json');
 
 sequelize.sync({ force: true })
   .then(async () => {
@@ -25,7 +25,7 @@ sequelize.sync({ force: true })
     await Promise.all(
       bookmarks.map(bookmark => Bookmark.create(bookmark)),
     );
-    // await Promise.all(
-    //   histories.map(history => History.create(history)),
-    // );
+    await Promise.all(
+      histories.map(history => History.create(history)),
+    );
   });

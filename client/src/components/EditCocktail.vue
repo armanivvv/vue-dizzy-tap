@@ -95,8 +95,9 @@ export default {
             cocktailId: this.cocktail.id,
           },
         });
-      } catch (error) {
-        this.error = error.response.data.error;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   },
@@ -105,8 +106,9 @@ export default {
     try {
       const cocktailId = this.$store.state.route.params.cocktailId;
       this.cocktail = (await CocktailsService.show(cocktailId)).data;
-    } catch (error) {
-      this.error = error.response.data.error;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
     }
   },
 };

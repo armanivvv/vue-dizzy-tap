@@ -1,17 +1,33 @@
 import Api from '@/services/Api';
 
 export default {
-  index(params) {
+  index(bookmark) {
     return Api().get('bookmarks', {
-      params,
+      params: bookmark,
     });
   },
-  post(params) {
-    return Api().post('bookmarks', {
-      params,
-    });
+  post(bookmark) {
+    return Api().post('bookmarks', bookmark);
   },
   delete(bookmarkId) {
     return Api().delete(`bookmarks/${bookmarkId}`);
   },
 };
+
+// import Api from '@/services/Api';
+
+// export default {
+//   index(params) {
+//     return Api().get('bookmarks', {
+//       params,
+//     });
+//   },
+//   post(params) {
+//     return Api().post('bookmarks', {
+//       params,
+//     });
+//   },
+//   delete(bookmarkId) {
+//     return Api().delete(`bookmarks/${bookmarkId}`);
+//   },
+// };

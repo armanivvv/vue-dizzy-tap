@@ -96,8 +96,9 @@ export default {
         this.$router.push({
           name: 'cocktails',
         });
-      } catch (error) {
-        this.error = error.response.data.error;
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   },

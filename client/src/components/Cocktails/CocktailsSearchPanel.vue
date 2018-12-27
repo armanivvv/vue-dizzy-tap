@@ -19,6 +19,7 @@ export default {
   },
 
   watch: {
+    // eslint-disable-next-line
     search: _.debounce(async function () {
       const route = {
         name: 'cocktails',

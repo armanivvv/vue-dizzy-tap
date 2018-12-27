@@ -1,0 +1,10 @@
+[
+  {
+    "CocktailId": 1,
+    "UserId": 1
+  },
+  {
+    "CocktailId": 2,
+    "UserId": 1
+  }
+]
