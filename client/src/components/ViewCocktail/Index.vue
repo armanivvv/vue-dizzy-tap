@@ -11,7 +11,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import CocktailsService from '@/services/CocktailsService';
+import CocktailHistoryService from '@/services/CocktailHistoryService';
 import CocktailMetadata from './CocktailMetadata';
 import Recipe from './Recipe';
 
@@ -22,9 +24,23 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user',
+      'route',
+    ]),
+  },
+
   async mounted() {
     const cocktailId = this.$store.state.route.params.cocktailId;
     this.cocktail = (await CocktailsService.show(cocktailId)).data;
+
+    if (this.isUserLoggedIn) {
+      CocktailHistoryService.post({
+        cocktailId,
+      });
+    }
   },
 
   components: {

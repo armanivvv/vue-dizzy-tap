@@ -5,11 +5,11 @@
       :pagination.sync="pagination"
       :items="bookmarks">
       <template slot="items" slot-scope="props">
-        <td class="text-xs-right">
-          {{props.item.name}}
+        <td class="text-xs-left">
+          {{ props.item.name }}
         </td>
-        <td class="text-xs-right">
-          {{props.item.ingredient}}
+        <td class="text-xs-left">
+          {{ props.item.ingredient }}
         </td>
       </template>
     </v-data-table>

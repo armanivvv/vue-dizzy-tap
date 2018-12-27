@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Cocktail } = require('../models');
 
 module.exports = {
@@ -9,11 +10,11 @@ module.exports = {
       if (req.query.search) {
         cocktails = await Cocktail.findAll({
           where: {
-            $or: [
+            [Op.or]: [
               'name', 'description', 'ingredient',
             ].map(key => ({
               [key]: {
-                $like: `%${search}%`,
+                [Op.like]: `%${search}%`,
               },
             })),
           },

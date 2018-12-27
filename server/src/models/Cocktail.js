@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     imageUrl: DataTypes.STRING,
   });
 
-  Cocktail.associate = (models) => {
+  Cocktail.associate = () => {
   };
 
   return Cocktail;

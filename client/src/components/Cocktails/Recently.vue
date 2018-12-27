@@ -1,9 +1,9 @@
 <template>
-  <panel title="Recently Viewed Cocktails">
+  <panel title="View History">
     <v-data-table
       :headers="headers"
       :pagination.sync="pagination"
-      :items="histories">
+      :items="cocktails">
       <template slot="items" slot-scope="props">
         <td class="text-xs-left">
           {{ props.item.name }}
@@ -34,22 +34,24 @@ export default {
         },
       ],
       pagination: {
-        sortBy: 'createdAt',
+        sortBy: 'historyCreatedAt',
         descending: true,
       },
-      histories: [],
+      cocktails: [],
     };
+  },
+  async mounted() {
+    if (this.isUserLoggedIn) {
+      this.cocktails = (await CocktailHistoryService.index({
+        userId: this.user.id,
+      })).data;
+    }
   },
   computed: {
     ...mapState([
       'isUserLoggedIn',
       'user',
     ]),
-  },
-  async mounted() {
-    if (this.isUserLoggedIn) {
-      this.histories = (await CocktailHistoryService.index()).data;
-    }
   },
 };
 </script>
