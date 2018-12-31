@@ -1,7 +1,7 @@
 <template>
   <v-toolbar dark fixed class="primary">
-    <v-toolbar-title class="mr-4">
-      <router-link class="home" :to="{ name: 'root' }" tag="span">Dizzy Tab Lounge</router-link>
+    <v-toolbar-title class="mr-2">
+      <router-link :to="{ name: 'root' }" class="home image" tag="img" src="https://res.cloudinary.com/dyocdwgu9/image/upload/v1545899286/Dizzy%20Lounge/logo.png"></router-link>
     </v-toolbar-title>
 
     <v-toolbar-items>
@@ -56,6 +56,11 @@ export default {
 
 .home {
   cursor: pointer;
+}
+
+.image {
+  margin-top: 17%;
+  width: 120px;
 }
 
 .home:hover {
