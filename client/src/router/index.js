@@ -6,7 +6,7 @@ import Cocktails from '@/components/Cocktails/Index';
 import CreateCocktail from '@/components/CreateCocktail';
 import ViewCocktail from '@/components/ViewCocktail/Index';
 import EditCocktail from '@/components/EditCocktail';
-// import HelloWorld from '@/components/HelloWorld';
+import Index from '@/components/Index';
 
 Vue.use(Router);
 
@@ -16,8 +16,8 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      redirect: 'cocktails',
-      // component: HelloWorld,
+      // redirect: 'cocktails',
+      component: Index,
     },
     {
       path: '*',

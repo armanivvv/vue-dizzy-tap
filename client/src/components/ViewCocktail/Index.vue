@@ -1,13 +1,15 @@
 <template>
-  <v-layout>
-    <v-flex xs6 class="mr-2">
-      <cocktail-metadata :cocktail="cocktail" />
-    </v-flex>
+  <v-container fluid>
+    <v-layout>
+      <v-flex xs6 class="mr-2">
+        <cocktail-metadata :cocktail="cocktail" />
+      </v-flex>
 
-    <v-flex xs6 class="ml-2">
-      <recipe :cocktail="cocktail" />
-    </v-flex>
-  </v-layout>
+      <v-flex xs6 class="ml-2">
+        <recipe :cocktail="cocktail" />
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

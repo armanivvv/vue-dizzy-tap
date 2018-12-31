@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dark fixed class="cyan">
+  <v-toolbar dark fixed class="primary">
     <v-toolbar-title class="mr-4">
       <router-link class="home" :to="{ name: 'root' }" tag="span">Dizzy Tab Lounge</router-link>
     </v-toolbar-title>

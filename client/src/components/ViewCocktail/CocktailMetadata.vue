@@ -12,7 +12,7 @@
         {{ cocktail.category }}
         </div>
 
-        <v-btn dark class="cyan"
+        <v-btn dark class="primary"
           :to="{
             name: 'cocktail-edit',
             params () {
@@ -26,14 +26,14 @@
 
         <v-btn v-if="isUserLoggedIn && !bookmark"
           dark
-          class="cyan"
+          color="primary"
           @click="setAsBookmark">
           Set Bookmark
         </v-btn>
 
         <v-btn v-if="isUserLoggedIn && bookmark"
           dark
-          class="cyan"
+          color="primary"
           @click="unsetAsBookmark">
           Remove Bookmark
         </v-btn>
