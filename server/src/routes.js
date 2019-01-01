@@ -8,38 +8,38 @@ const isAuthenticated = require('./policies/isAuthenticated');
 
 module.exports = (app) => {
   // User Credentials and Functions
-  app.post('/register',
+  app.post('/api/register',
     AuthenticationControllerPolicy.register,
     AuthenticationController.register);
-  app.post('/login',
+  app.post('/api/login',
     AuthenticationController.login);
 
   // Cocktail CRUD and Functions
-  app.get('/cocktails',
+  app.get('/api/cocktails',
     CocktailsController.index);
-  app.get('/cocktails/:cocktailId',
+  app.get('/api/cocktails/:cocktailId',
     CocktailsController.show);
-  app.put('/cocktails/:cocktailId',
+  app.put('/api/cocktails/:cocktailId',
     CocktailsController.put);
-  app.post('/cocktails',
+  app.post('/api/cocktails',
     CocktailsController.create);
 
   // Bookmark CRUD and Functions
-  app.get('/bookmarks',
+  app.get('/api/bookmarks',
     isAuthenticated,
     BookmarksController.index);
-  app.post('/bookmarks',
+  app.post('/api/bookmarks',
     isAuthenticated,
     BookmarksController.post);
-  app.delete('/bookmarks/:bookmarkId',
+  app.delete('/api/bookmarks/:bookmarkId',
     isAuthenticated,
     BookmarksController.remove);
 
   // Recent History Function
-  app.get('/histories',
+  app.get('/api/histories',
     isAuthenticated,
     HistoriesController.index);
-  app.post('/histories',
+  app.post('/api/histories',
     isAuthenticated,
     HistoriesController.post);
 };
