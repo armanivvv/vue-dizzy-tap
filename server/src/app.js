@@ -4,13 +4,19 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { sequelize } = require('./models');
 const config = require('./config/config');
+const path = require('path')
 
+const PORT = config.PORT
 const app = express();
+
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
+// serving static files. Necessary for heroku deployment
+app.use(express.static(path.join(__dirname, '../../', 'client/dist')));
 
 require('./passport');
+
 
 require('./routes')(app);
 
