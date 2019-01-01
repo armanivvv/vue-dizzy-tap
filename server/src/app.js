@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 const { sequelize } = require('./models');
 const config = require('./config/config');
-const path = require('path')
 
-const PORT = config.PORT
+// const PORT = config.PORT;
 const app = express();
 
 app.use(morgan('combined'));
