@@ -1,23 +1,25 @@
 <template>
-  <v-layout>
-    <v-flex xs6 offset-xs3>
-      <panel title="Login">
-        <v-text-field
-          label="Email"
-          v-model="email"
-          box
-        ></v-text-field>
-        <v-text-field
-          label="Password"
-          v-model="password"
-          type="password"
-          box
-        ></v-text-field>
-        <div class="danger-alert" v-html="error" />
-        <v-btn dark class="cyan" @click="login">Login</v-btn>
-      </panel>
-    </v-flex>
-  </v-layout>
+  <v-container fluid>
+    <v-layout>
+      <v-flex xs6 offset-xs3>
+        <panel title="Login">
+          <v-text-field
+            label="Email"
+            v-model="email"
+            box
+          ></v-text-field>
+          <v-text-field
+            label="Password"
+            v-model="password"
+            type="password"
+            box
+          ></v-text-field>
+          <div class="danger-alert" v-html="error" />
+          <v-btn dark class="primary" @click="login">Login</v-btn>
+        </panel>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

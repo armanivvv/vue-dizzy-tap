@@ -3,9 +3,9 @@
     <v-app>
       <page-header />
       <v-content>
-        <v-container fluid>
+        <!-- <v-container fluid> -->
           <router-view></router-view>
-        </v-container>
+        <!-- </v-container> -->
       </v-content>
     </v-app>
   </div>
@@ -31,6 +31,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+/* html, body {
+  height: 100%;
+  background: linear-gradient(to bottom right, #7f3737, #2a2122);
+} */
 
 .danger-alert {
   color: red;
