@@ -86,11 +86,6 @@ export default {
       },
     },
   },
-
-  // Old backend request methodology
-  // async mounted() {
-  //   this.cocktails = (await CocktailsService.index()).data;
-  // },
 };
 
 </script>
