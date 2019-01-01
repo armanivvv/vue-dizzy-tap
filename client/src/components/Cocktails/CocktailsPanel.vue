@@ -6,7 +6,7 @@
       :to="{
           name: 'cocktails-create'
         }">
-      <v-icon>add</v-icon>
+      <v-icon>edit</v-icon>
     </v-btn>
 
     <!-- adding in cards -->
@@ -35,7 +35,7 @@
 
                 <v-card-title primary-title>
                   <div>
-                    <div class="headline" style="text-align: left">Top western road trips</div>
+                    <div class="headline" style="text-align: left">{{ cocktail.name }}</div>
                     <div class="grey--text" style="text-align: left">1,000 miles of wonder</div>
                   </div>
 
@@ -54,7 +54,7 @@
                       <v-icon>bookmark</v-icon>
                     </v-btn>
                     <v-btn icon>
-                      <v-icon>share</v-icon>
+                      <v-icon>brush</v-icon>
                     </v-btn>
                   </v-card-actions>
                 </v-card-title>

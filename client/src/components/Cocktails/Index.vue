@@ -1,22 +1,18 @@
 <template>
   <v-container fluid>
     <v-layout>
-      <v-flex xs6 v-if="isUserLoggedIn">
+      <v-flex xs3 v-if="isUserLoggedIn">
         <cocktails-bookmarks />
         <recently-viewed-cocktails class="mt-2" />
       </v-flex>
 
       <v-flex :class="{
           xs12: !isUserLoggedIn,
-          xs6: isUserLoggedIn
+          xs9: isUserLoggedIn
         }" class="ml-2">
         <cocktails-search-panel />
         <cocktails-panel class="mt-2"/>
       </v-flex>
-      <!-- <v-flex xs6 offset-xs3>
-        <cocktails-search-panel class="mb-4"/>
-        <cocktails-panel class="mt-4"/>
-      </v-flex> -->
     </v-layout>
   </v-container>
 </template>

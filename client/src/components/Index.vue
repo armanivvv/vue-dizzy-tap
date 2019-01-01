@@ -6,8 +6,6 @@
         style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://res.cloudinary.com/dyocdwgu9/image/upload/v1546229301/Dizzy Lounge/barbkg.jpg'); background-size: cover;"
         height="650">
         <v-layout align-center column justify-center >
-      <!-- <v-parallax src="../assets/plane.jpeg" height="600">
-        <v-layout column align-center justify-center class="white--text" > -->
           <v-flex xs12>
             <!-- tom collins -->
             <!-- <div class="cocktail collins">
@@ -36,11 +34,75 @@
               </div>
             </div>
           </v-flex>
-          <!-- <img src="../assets/vuetify.png" alt="Vuetify.js" height="200"> -->
           <h1 class="white--text mb-2 display-1 text-xs-center">Dizzy Tap Lounge</h1>
           <div class="subheading mb-3 text-xs-center">Drinks Recipe Maker</div>
           <v-flex xs12>
-            <v-btn
+
+              <v-dialog v-model="dialogl" persistent max-width="400px">
+                <v-btn round slot="activator" class="primary" dark>
+                  <v-icon left dark>fingerprint</v-icon>
+                  Sign In
+                </v-btn>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Sign In</span>
+                  </v-card-title>
+                  <div class="danger-alert" v-html="error" />
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field label="Email*" required v-model="email"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Password*" type="password"
+                            required v-model="password"
+                            autocomplete="new-password"></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click="dialogl = false">Close</v-btn>
+                    <v-btn dark class="primary" @click="login">Sign In</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <v-dialog v-model="dialogr" persistent max-width="400px">
+                <v-btn round slot="activator" class="primary" dark>
+                  <v-icon left dark>face</v-icon>
+                  Join Now
+                </v-btn>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Join Now</span>
+                  </v-card-title>
+                  <div class="danger-alert" v-html="error" />
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field label="Email*" required v-model="email"></v-text-field>
+                        </v-flex>
+                        <v-flex xs12>
+                          <v-text-field label="Password*" type="password"
+                            required v-model="password"
+                            autocomplete="new-password"></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click="dialogr = false">Close</v-btn>
+                    <v-btn dark class="primary" @click="register">Join Now</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+            <!-- <v-btn
               round
               class="primary"
               dark
@@ -61,7 +123,7 @@
             >
               <v-icon left dark>face</v-icon>
               Sign Up
-            </v-btn>
+            </v-btn> -->
           </v-flex>
         </v-layout>
       </v-parallax>
@@ -150,10 +212,54 @@
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService';
+
 export default {
-  register: false,
-  login: false,
+  data() {
+    return {
+      dialogl: false,
+      dialogr: false,
+      email: '',
+      password: '',
+      error: null,
+    };
+  },
+
+  methods: {
+    async register() {
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password,
+        });
+        this.$store.dispatch('setToken', response.data.token);
+        this.$store.dispatch('setUser', response.data.user);
+        this.$router.push({
+          name: 'cocktails',
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+
+    async login() {
+      try {
+        const response = await AuthenticationService.login({
+          email: this.email,
+          password: this.password,
+        });
+        this.$store.dispatch('setToken', response.data.token);
+        this.$store.dispatch('setUser', response.data.user);
+        this.$router.push({
+          name: 'cocktails',
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
+    },
+  },
 };
+
 </script>
 
 <style>
